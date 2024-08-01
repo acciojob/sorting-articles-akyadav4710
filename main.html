@@ -29,7 +29,10 @@
 
         function stripArticle(name) {
             const words = name.toLowerCase().split(' ');
-            return articles.includes(words[0]) ? words.slice(1).join(' ') : name;
+            if (articles.includes(words[0])) {
+                return words.slice(1).join(' ');
+            }
+            return name;
         }
 
         const sortedBands = bands.slice().sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
