@@ -28,11 +28,13 @@
         const articles = ['a', 'an', 'the'];
 
         function stripArticle(name) {
-            const words = name.toLowerCase().split(' ');
-            if (articles.includes(words[0])) {
-                return words.slice(1).join(' ');
+            const lowerName = name.toLowerCase();
+            for (let article of articles) {
+                if (lowerName.startsWith(article + ' ')) {
+                    return lowerName.substring(article.length + 1);
+                }
             }
-            return name;
+            return lowerName;
         }
 
         const sortedBands = bands.slice().sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
